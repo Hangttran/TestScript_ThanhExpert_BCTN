@@ -114,12 +114,12 @@ public class Validate {
     }
 
     public boolean verifyNoExtraPageCreated(By allItemLocator, By paginationPageLocator, int maxItemsPerPage) {
-        // 1. Lấy tổng số item (ở trang hiện tại hoặc tổng item nếu có cách lấy)
+
         List<WebElement> allItems = driver.findElements(allItemLocator);
         int totalItems = allItems.size();
         System.out.println("Tổng số item: " + totalItems);
 
-        // 2. Đếm số trang số trong pagination
+   
         List<WebElement> pages = driver.findElements(paginationPageLocator);
         int numericPageCount = 0;
         for (WebElement page : pages) {
@@ -130,11 +130,11 @@ public class Validate {
         }
         System.out.println("Số trang hiển thị trong pagination: " + numericPageCount);
 
-        // 3. Tính số trang cần thiết
+    
         int expectedPageCount = (int) Math.ceil((double) totalItems / maxItemsPerPage);
         System.out.println("Số trang cần thiết: " + expectedPageCount);
 
-        // 4. So sánh
+
         if (numericPageCount <= expectedPageCount) {
             System.out.println("PASSED: Không tạo trang số mới vượt quá số trang cần thiết");
             return true;
